@@ -5,10 +5,10 @@ namespace SDD.Services.OrderAPI.Contracts.Repositories
 {
     public interface IOrderRepository
     {
-        Task<IEnumerable<OrderDto>> GetAllOrdersAsync(CancellationToken cancellation = default);
-        Task<OrderDto> CreateOrderAsync(Order order, CancellationToken cancellation = default);
-        Task<OrderDto> GetOrderByIdAsync(int orderId, CancellationToken cancellation = default);
-        Task<OrderDto> UpdateOrderAsync(Order order, CancellationToken cancellation = default);
-        Task<bool> DeleteOrderAsync(int orderId, CancellationToken cancellation = default);
+        Task<ResponseDto> GetAllOrdersAsync(int skip, int take, CancellationToken cancellation = default);
+        Task<ResponseDto> CreateOrderAsync(Order order, CancellationToken cancellation = default);
+        Task<ResponseDto> GetOrderByIdAsync(int orderId, CancellationToken cancellation = default);
+        Task<ResponseDto> UpdateOrderAsync(Order order, CancellationToken cancellation = default);
+        Task<ResponseDto> DeleteOrderAsync(int orderId, CancellationToken cancellation = default);
     }
 }
