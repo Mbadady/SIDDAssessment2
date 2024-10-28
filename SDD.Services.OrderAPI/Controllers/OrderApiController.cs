@@ -32,8 +32,14 @@ namespace SDD.Services.OrderAPI.Controllers
             try
             {
                 var orders = await _orderRepository.GetAllOrdersAsync(cancellationToken);
+                if(orders.Any())
+                {
+                    _response.Result = orders;
+                    _response.Message = "Orders retrieved successfully.";
+                    return Ok(_response);
+                }
                 _response.Result = orders;
-                _response.Message = "Orders retrieved successfully.";
+                _response.Message = "No order found";
                 return Ok(_response);
             }
             catch (Exception ex)
