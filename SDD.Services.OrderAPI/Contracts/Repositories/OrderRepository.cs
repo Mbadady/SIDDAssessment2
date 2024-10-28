@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using Mango.Services.ShoppingCartAPI.Service.IService;
 using Microsoft.EntityFrameworkCore;
 using SDD.Services.OrderAPI.Data;
@@ -26,9 +25,14 @@ namespace SDD.Services.OrderAPI.Contracts.Repositories
             try
             {
                 var product = await _productService.GetProductById(order.ProductId);
-                if (product == null)
+                if (product == null || product.ProductId == 0)
                 {
                     return new ResponseDto { IsSuccess = true, Message = "Product not found for this order", Result = null };
+                }
+
+                if (product.Quantity < order.Quantity)
+                {
+                    return new ResponseDto { IsSuccess = true, Message = "Insufficient product quantity available to fulfill this order", Result = null };
                 }
                 await _dbContext.Orders.AddAsync(order, cancellation);
                 await _dbContext.SaveChangesAsync(cancellation);
@@ -121,9 +125,14 @@ namespace SDD.Services.OrderAPI.Contracts.Repositories
                 }
 
                 var product = await _productService.GetProductById(order.ProductId);
-                if (product == null)
+                if (product == null || product.ProductId == 0)
                 {
                     return new ResponseDto { IsSuccess = true, Message = "Product not found for this order", Result = null };
+                }
+
+                if (product.Quantity < order.Quantity)
+                {
+                    return new ResponseDto { IsSuccess = true, Message = "Insufficient product quantity available to fulfill this order", Result = null };
                 }
                 // Update the product directly, since the 'product' object contains updated values
                 _dbContext.Orders.Update(order);

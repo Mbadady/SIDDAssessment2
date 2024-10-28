@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Mango.Services.ShoppingCartAPI.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SDD.Services.OrderAPI.Contracts.Repositories;
@@ -55,7 +54,7 @@ namespace SDD.Services.OrderAPI.Controllers
         }
 
         [HttpDelete("{orderId}")]
-        public async Task<ActionResult<ResponseDto>> DeleteOrder(int orderId, CancellationToken cancellationToken)
+        public async Task<ActionResult<ResponseDto>> DeleteOrder(int orderId)
         {
             return Ok(await _orderRepository.DeleteOrderAsync(orderId));
         }
