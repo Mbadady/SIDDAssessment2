@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using System.Net.Http.Headers;
 
-namespace Mango.Services.OrderAPI.Utility 
+namespace SDD.Services.OrderAPI.Utility 
 {
     public class BackendApiAuthenticationHttpClientHandler : DelegatingHandler
     {

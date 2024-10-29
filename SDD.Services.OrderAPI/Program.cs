@@ -1,6 +1,5 @@
 using AutoMapper;
 using Mango.Services.OrderAPI;
-using Mango.Services.OrderAPI.Utility;
 using Mango.Services.ShoppingCartAPI.Service;
 using Mango.Services.ShoppingCartAPI.Service.IService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -9,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using SDD.Services.OrderAPI.Contracts.Repositories;
 using SDD.Services.OrderAPI.Data;
 using SDD.Services.OrderAPI.Extensions;
+using SDD.Services.OrderAPI.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
